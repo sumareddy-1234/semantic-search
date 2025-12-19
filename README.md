@@ -61,7 +61,9 @@ Elapsed time: ~120 seconds (20 Newsgroups, ~18,000 documents)
 Query Latency (Batch Mode)
 Total time for queries.txt: 46.568 seconds
 
-Mean latency per query: (46.568 ÷ N) seconds → depends on number of queries in file
+Number of queries in file: N (replace with actual count)
+
+Mean latency per query: 46.568 ÷ N seconds
 
 p95 latency: ~ slightly above mean
 
