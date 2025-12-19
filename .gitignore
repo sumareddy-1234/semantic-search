@@ -1,3 +1,12 @@
-# Ignore large text file
-RLF the next time Git touches it.txt
+# Virtual environments
+.venv/
+.venv310/
 
+# Dataset and indexes
+data/datasets/
+index/
+
+# Python wheel files
+*.whl
+
+"data/datasets/" 
