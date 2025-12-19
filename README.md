@@ -1,596 +1,130 @@
-\# 📚 Semantic Document Search Engine
-
-
-
-\## 🔎 Project Overview
-
-This repository contains a \*\*semantic document search engine\*\* built with Python and \[SentenceTransformers](https://www.sbert.net/).  
-
-The goal is to enable \*\*semantic search\*\* over a corpus of text documents, where queries are matched based on meaning rather than exact keywords.
-
-
-
-\### Features
-
-\- \*\*Indexing\*\*: Embed and store documents in a searchable index.  
-
-\- \*\*Search\*\*: Query with natural language and retrieve top‑k relevant documents.  
-
-\- \*\*Batch search\*\*: Run multiple queries from a file.  
-
-\- \*\*Benchmarking\*\*: Measure indexing throughput and query latency.  
-
-\- \*\*Dataset support\*\*: Includes a small sample dataset and a script to download the 20 Newsgroups dataset.  
-
-
-
-\### Core Techniques
-
-\- Sentence embeddings using `all-MiniLM-L6-v2`  
-
-\- L2‑normalized vectors  
-
-\- Cosine similarity for ranking  
-
-\- Modular code with clear error handling and progress reporting  
-
-
-
----
-
-
-
-\## ⚙️ Environment Setup
-
-
-
-\### 1. Clone the repository
-
-```bash
-
-git clone https://github.com/sumareddy-1234/semantic-search.git
-
-cd semantic-search
-
-2\. Create and activate a virtual environment
-
-bash
-
-python -m venv .venv
-
-\# Activate
-
-source .venv/bin/activate   # macOS/Linux
-
-.venv\\Scripts\\Activate.ps1  # Windows PowerShell
-
-3\. Install dependencies
-
-bash
-
-pip install -r requirements.txt
-
-Dependencies:
-
-
-
-numpy
-
-
-
-scikit-learn
-
-
-
-tqdm
-
-
-
-sentence-transformers
-
-
-
-📂 Dataset
-
-Sample dataset
-
-Located in data/sample/ (10+ small .txt files).
-
-Examples:
-
-
-
-renewables.txt → “Solar and wind energy incentives help adoption across regions.”
-
-
-
-ml\_intro.txt → “Neural networks are used for image recognition and NLP tasks.”
-
-
-
-Full dataset
-
-Download the 20 Newsgroups dataset:
-
-
-
-bash
-
-python scripts/prepare\_dataset.py --output\_dir data/datasets/20news\_txt --min\_docs 100
-
-This will create ~18,846 .txt files across multiple categories.
-
-
-
-🔍 Indexing Commands
-
-Index sample dataset
-
-bash
-
-python semantic\_search.py index --input\_dir ./data/sample --index\_dir ./index
-
-Index full dataset
-
-bash
-
-python semantic\_search.py index --input\_dir ./data/datasets/20news\_txt --index\_dir ./index
-
-🔎 Search Commands
-
-Single query
-
-bash
-
-python semantic\_search.py search --index\_dir ./index --query "renewable energy incentives" --top\_k 5
-
-Batch queries
-
-Create queries.txt:
-
-
-
-Code
-
-quantum entanglement experiments
-
-renewable energy incentives
-
-neural networks for image recognition
-
-international trade sanctions policy
-
-Run:
-
-
-
-bash
-
-python semantic\_search.py batch --index\_dir ./index --queries\_file ./queries.txt --top\_k 5
-
-📊 Benchmark Report
-
-Environment
-
-OS: Windows 11
-
-
-
-CPU: Intel Core i5 (replace with your CPU model)
-
-
-
-RAM: 16 GB (replace with your RAM size)
-
-
-
-Python: 3.11
-
-
-
-Model: sentence-transformers/all-MiniLM-L6-v2
-
-
-
-Indexing (20 Newsgroups)
-
-Total docs: 18,846
-
-
-
-Total time: ~547.7s
-
-
-
-Throughput: ~34 docs/sec
-
-
-
-Query latency
-
-Run:
-
-
-
-powershell
-
-Measure-Command { python semantic\_search.py batch --index\_dir ./index --queries\_file ./queries.txt --top\_k 5 }
-
-Record:
-
-
-
-Mean latency: (fill in after measurement)
-
-
-
-p95 latency: (fill in after measurement)
-
-
-
-p99 latency: (fill in after measurement)
-
-
-
-📊 Example Queries and Results
-
-Query: renewable energy incentives
-
-Code
-
-1\. renewables.txt  |  score=0.8421
-
-&nbsp;  Solar and wind energy incentives help adoption across regions.
-
-2\. energy\_policies\_00012.txt  |  score=0.8013
-
-&nbsp;  Government programs encourage renewable adoption with subsidies and tax credits.
-
-Query: neural networks for image recognition
-
-Code
-
-1\. ml\_intro.txt  |  score=0.8734
-
-&nbsp;  Neural networks are used for image recognition and NLP tasks.
-
-2\. deep\_learning\_00123.txt  |  score=0.8456
-
-&nbsp;  Convolutional neural networks achieve state-of-the-art results in vision tasks.
-
-Query: quantum entanglement experiments
-
-Code
-
-1\. physics\_quantum\_00045.txt  |  score=0.8127
-
-&nbsp;  Experiments confirm entanglement across large distances with photon pairs.
-
-2\. quantum\_mechanics\_00102.txt  |  score=0.7998
-
-&nbsp;  Bell’s theorem tests validate non-local correlations in entangled systems.
-
-🛠️ Troubleshooting
-
-ModuleNotFoundError: No module named 'numpy'  
-
-→ Activate venv and run pip install -r requirements.txt.
-
-
-
-/usr/bin/time not found on Windows  
-
-→ Use PowerShell’s Measure-Command instead.
-
-
-
-Few documents warning  
-
-→ OK for sample dataset; use 20 Newsgroups for full indexing.
-
-
-
-Model download slow  
-
-→ Check internet connection; model downloads once and caches locally. can you put all this inforamtion in a single markdown file for easy copy and paste here’s the entire README.md in one single Markdown block, fully detailed and ready for copy‑paste into your repo.
-
-
-
 markdown
+# 📖 Semantic Search Engine
 
-\# 📚 Semantic Document Search Engine
-
-
-
-\## 🔎 Project Overview
-
-This repository contains a \*\*semantic document search engine\*\* built with Python and \[SentenceTransformers](https://www.sbert.net/).  
-
-The goal is to enable \*\*semantic search\*\* over a corpus of text documents, where queries are matched based on meaning rather than exact keywords.
-
-
-
-\### Features
-
-\- \*\*Indexing\*\*: Embed and store documents in a searchable index.  
-
-\- \*\*Search\*\*: Query with natural language and retrieve top‑k relevant documents.  
-
-\- \*\*Batch search\*\*: Run multiple queries from a file.  
-
-\- \*\*Benchmarking\*\*: Measure indexing throughput and query latency.  
-
-\- \*\*Dataset support\*\*: Includes a small sample dataset and a script to download the 20 Newsgroups dataset.  
-
-
-
-\### Core Techniques
-
-\- Sentence embeddings using `all-MiniLM-L6-v2`  
-
-\- L2‑normalized vectors  
-
-\- Cosine similarity for ranking  
-
-\- Modular code with clear error handling and progress reporting  
-
-
+A semantic search engine built using [SentenceTransformers](https://www.sbert.net/) to index and query the **20 Newsgroups dataset**.  
+This project demonstrates semantic retrieval with embeddings, reproducible workflows, and performance benchmarks.
 
 ---
 
+## 🔗 Repository Link
+Public GitHub repository: [https://github.com/sumareddy-1234/semantic-search](https://github.com/sumareddy-1234/semantic-search)
 
+---
 
-\## ⚙️ Environment Setup
+## ⚙️ Environment Setup
 
-
-
-\### 1. Clone the repository
-
+### 1. Clone the repository
 ```bash
-
 git clone https://github.com/sumareddy-1234/semantic-search.git
-
 cd semantic-search
-
-2\. Create and activate a virtual environment
-
+2. Create a virtual environment
 bash
-
 python -m venv .venv
+Activate it:
 
-\# Activate
-
-source .venv/bin/activate   # macOS/Linux
-
-.venv\\Scripts\\Activate.ps1  # Windows PowerShell
-
-3\. Install dependencies
-
-bash
-
-pip install -r requirements.txt
-
-Dependencies:
-
-
-
-numpy
-
-
-
-scikit-learn
-
-
-
-tqdm
-
-
-
-sentence-transformers
-
-
-
-📂 Dataset
-
-Sample dataset
-
-Located in data/sample/ (10+ small .txt files).
-
-Examples:
-
-
-
-renewables.txt → “Solar and wind energy incentives help adoption across regions.”
-
-
-
-ml\_intro.txt → “Neural networks are used for image recognition and NLP tasks.”
-
-
-
-Full dataset
-
-Download the 20 Newsgroups dataset:
-
-
-
-bash
-
-python scripts/prepare\_dataset.py --output\_dir data/datasets/20news\_txt --min\_docs 100
-
-This will create ~18,846 .txt files across multiple categories.
-
-
-
-🔍 Indexing Commands
-
-Index sample dataset
-
-bash
-
-python semantic\_search.py index --input\_dir ./data/sample --index\_dir ./index
-
-Index full dataset
-
-bash
-
-python semantic\_search.py index --input\_dir ./data/datasets/20news\_txt --index\_dir ./index
-
-🔎 Search Commands
-
-Single query
-
-bash
-
-python semantic\_search.py search --index\_dir ./index --query "renewable energy incentives" --top\_k 5
-
-Batch queries
-
-Create queries.txt:
-
-
-
-Code
-
-quantum entanglement experiments
-
-renewable energy incentives
-
-neural networks for image recognition
-
-international trade sanctions policy
-
-Run:
-
-
-
-bash
-
-python semantic\_search.py batch --index\_dir ./index --queries\_file ./queries.txt --top\_k 5
-
-📊 Benchmark Report
-
-Environment
-
-OS: Windows 11
-
-
-
-CPU: Intel Core i5 (replace with your CPU model)
-
-
-
-RAM: 16 GB (replace with your RAM size)
-
-
-
-Python: 3.11
-
-
-
-Model: sentence-transformers/all-MiniLM-L6-v2
-
-
-
-Indexing (20 Newsgroups)
-
-Total docs: 18,846
-
-
-
-Total time: ~547.7s
-
-
-
-Throughput: ~34 docs/sec
-
-
-
-Query latency
-
-Run:
-
-
+Windows (PowerShell):
 
 powershell
+.venv\Scripts\Activate
+Linux/macOS (bash/zsh):
 
-Measure-Command { python semantic\_search.py batch --index\_dir ./index --queries\_file ./queries.txt --top\_k 5 }
+bash
+source .venv/bin/activate
+3. Install dependencies
+bash
+pip install -r requirements.txt
+📂 Dataset
+A sample dataset is included in data/sample/ for quick testing.
 
-Record:
+To download and prepare the full 20 Newsgroups dataset, run:
 
+bash
+python scripts/prepare_dataset.py
+This will populate data/datasets/20news_txt/.
 
+🏗️ Build the Index
+Index the dataset into embeddings:
 
-Mean latency: (fill in after measurement)
+bash
+python semantic_search.py index --input_dir ./data/datasets/20news_txt --index_dir ./index
+🔍 Run Search Queries
+Single query
+bash
+python semantic_search.py search --index_dir ./index --query "renewable energy incentives" --top_k 5
+Batch queries
+bash
+python semantic_search.py batch --index_dir ./index --queries_file ./queries.txt --top_k 5
+⚡ Benchmarks
+Indexing Performance
+Elapsed time: ~120 seconds (20 Newsgroups, ~18,000 documents)
 
+Query Latency (Batch Mode)
+Total time for queries.txt: 46.568 seconds
 
+Mean latency per query: (46.568 ÷ N) seconds → depends on number of queries in file
 
-p95 latency: (fill in after measurement)
+p95 latency: ~ slightly above mean
 
-
-
-p99 latency: (fill in after measurement)
-
-
+p99 latency: ~ slightly above mean
 
 📊 Example Queries and Results
-
 Query: renewable energy incentives
+talk.politics.misc\talk_politics_misc_00182.txt  |  score=0.5426
+Government-Mandated Energy Conservation is Unnecessary and Wasteful, Study Finds Washington, DC...
 
-Code
+talk.politics.misc\talk_politics_misc_10535.txt  |  score=0.4564
+Ahhh, remember the days of Yesterday? When we were only going to pay $17 / month?...
 
-1\. renewables.txt  |  score=0.8421
+sci.space\sci_space_15108.txt  |  score=0.4218
+You're assuming that "go solar" = "photovoltaic". Solar dynamic power (turbo-alternators)...
 
-&nbsp;  Solar and wind energy incentives help adoption across regions.
+sci.space\sci_space_06663.txt  |  score=0.3918
+In my first posting on this subject I threw out an idea of how to fund such a contest...
 
-2\. energy\_policies\_00012.txt  |  score=0.8013
-
-&nbsp;  Government programs encourage renewable adoption with subsidies and tax credits.
-
-Query: neural networks for image recognition
-
-Code
-
-1\. ml\_intro.txt  |  score=0.8734
-
-&nbsp;  Neural networks are used for image recognition and NLP tasks.
-
-2\. deep\_learning\_00123.txt  |  score=0.8456
-
-&nbsp;  Convolutional neural networks achieve state-of-the-art results in vision tasks.
+talk.politics.misc\talk_politics_misc_09695.txt  |  score=0.3915
+While I agree with much of this post, one point seems mis-directed... energy efficiency in all countries...
 
 Query: quantum entanglement experiments
+comp.sys.ibm.pc.hardware\comp_sys_ibm_pc_hardware_07025.txt  |  score=0.3614
+The Quantum BBS number is 408-894-3214. Good luck. Les
 
-Code
+misc.forsale\misc_forsale_06451.txt  |  score=0.3542
+Forgot to mention that the above mentioned Quantum is a SCSI drive.
 
-1\. physics\_quantum\_00045.txt  |  score=0.8127
+talk.religion.misc\talk_religion_misc_16755.txt  |  score=0.3363
+Quantum Electrodynamics (QED - which considers light to be particles) has been experimentally verified...
 
-&nbsp;  Experiments confirm entanglement across large distances with photon pairs.
+alt.atheism\alt_atheism_07412.txt  |  score=0.3128
+I've been following this train of talk... dismissing atoms as being "not real" leaves me uneasy...
 
-2\. quantum\_mechanics\_00102.txt  |  score=0.7998
+sci.med\sci_med_08283.txt  |  score=0.3088
+No experimental result should be accepted unless it is described in sufficient detail to be replicated...
 
-&nbsp;  Bell’s theorem tests validate non-local correlations in entangled systems.
+Query: neural networks for image recognition
+comp.graphics\comp_graphics_16126.txt  |  score=0.4336
+CALL FOR PAPERS... Progress In Neural Networks Special Volume on Shape Analysis...
 
-🛠️ Troubleshooting
+comp.graphics\comp_graphics_18002.txt  |  score=0.4171
+Invitation to the 8th SCIA... Scandinavian Conference on Image Analysis...
 
-ModuleNotFoundError: No module named 'numpy'  
+alt.atheism\alt_atheism_18818.txt  |  score=0.4150
+I'm sure there are many people who work with neural networks and read this newsgroup...
 
-→ Activate venv and run pip install -r requirements.txt.
+comp.graphics\comp_graphics_00724.txt  |  score=0.3479
+Australian Pattern Recognition Society 2nd CALL FOR PAPERS DICTA-93...
 
+sci.electronics\sci_electronics_05590.txt  |  score=0.3403
+Looking for neural network circuit solutions that don’t require specific chips...
 
+🚫 Repository Hygiene
+.gitignore excludes:
 
-/usr/bin/time not found on Windows  
+Virtual environments (.venv/, .venv310/)
 
-→ Use PowerShell’s Measure-Command instead.
+Large datasets (data/datasets/)
 
+Index files (index/)
 
+Wheel files (*.whl)
 
-Few documents warning  
-
-→ OK for sample dataset; use 20 Newsgroups for full indexing.
-
-
-
-Model download slow  
-
-→ Check internet connection; model downloads once and caches locally.
-
+No large binaries or sensitive information are committed.
