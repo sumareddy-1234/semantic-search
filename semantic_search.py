@@ -1,3 +1,4 @@
+from pathlib import Path
 import argparse
 import json
 import sys
@@ -61,7 +62,7 @@ def load_index(index_dir: Path) -> Tuple[np.ndarray, Dict, str]:
 
 def index_directory(input_dir: Path, index_dir: Path, model_name: str = DEFAULT_MODEL, batch_size: int = 64):
     print(f"Loading model: {model_name}")
-    model = SentenceTransformer(model_name)
+    model = SentenceTransformer("./models/all-MiniLM-L6-v2")
     print(f"Ingesting documents from: {input_dir}")
     file_paths = load_txt_files(input_dir)
     if not file_paths:
